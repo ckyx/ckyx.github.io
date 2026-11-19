@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#080a16">
-  <meta name="description" content="ckyx — Developer / Programmer">
-  <title>ckyx · Developer</title>
+  <meta name="description" content="ckyx">
+  <link rel="icon" href="assets/images/favicon.png" type="image/png">
+  
+  <title>ckyx.dev</title>
   <style>
     :root {
       color-scheme: dark;
@@ -90,7 +92,7 @@
       width:min(340px,35vw); aspect-ratio:1; border-radius:50%; position:relative;
       background:radial-gradient(circle at 32% 25%,#e5fcff 0 1%,#80e8ff 5%,#8273ff 31%,#392b82 61%,#101326 74%);
       box-shadow:inset -25px -28px 60px #03040c,inset 13px 12px 35px #ffffff3d,0 0 95px #8273ff66;
-      animation:float 7s ease-in-out infinite;
+      animation:float 3s ease-in-out infinite;
     }
     .planet::before,.planet::after {
       content:""; position:absolute; inset:-23px; border:1px solid #a58bff77;
@@ -113,7 +115,7 @@
       position:absolute; bottom:18px; left:0; width:100%; text-align:center;
       color:#737b9c; font-size:11px; letter-spacing:.04em;
     }
-    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-13px)} }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-30px)} }
     @media(max-width:720px) {
       body { overflow:auto; }
       .topbar { padding:18px 20px; }
@@ -148,7 +150,7 @@
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#" aria-label="ckyx home"><span class="brand-icon">&lt;/&gt;</span><span>CKYX<span class="gradient">.DEV</span></span></a>
+    <a class="brand" href="#" aria-label="ckyx home"><span class="brand-icon">&lt;/&gt;</span><span>ckyx<span class="gradient">.dev</span></span></a>
     <button id="language" type="button" aria-label="Switch language">EN</button>
   </header>
 
@@ -160,7 +162,7 @@
       <p class="desc" data-i18n="description">热爱编程与技术探索，专注于用代码解决问题、构建可靠而优雅的软件。</p>
 
       <div class="skills" aria-label="Technology stack">
-        <span class="skill">C / C++</span><span class="skill">CMake</span>
+        <span class="skill">C/C++</span><span class="skill">CMake</span>
         <span class="skill">Python</span><span class="skill">Linux</span>
         <span class="skill">Qt</span><span class="skill">wxWidgets</span>
         <span class="skill">MFC</span><span class="skill">Java</span>
@@ -188,13 +190,13 @@
   <script>
     const copy = {
       zh: {
-        title:"ckyx · Developer", toggle:"EN", status:"OPEN TO NEW IDEAS",
+        title:"ckyx.dev", toggle:"EN", status:"OPEN TO NEW IDEAS",
         role:"开发者 · 程序员",
         description:"热爱编程与技术探索，专注于用代码解决问题、构建可靠而优雅的软件。",
         github:"访问 GitHub", email:"发送邮件", footer:"· 用热爱与代码打造"
       },
       en: {
-        title:"ckyx · Developer", toggle:"中文", status:"OPEN TO NEW IDEAS",
+        title:"ckyx.dev", toggle:"中文", status:"OPEN TO NEW IDEAS",
         role:"Developer · Programmer",
         description:"Passionate about programming and exploring technology. I build reliable, elegant software and solve real-world problems with code.",
         github:"Visit GitHub", email:"Email me", footer:"· Built with passion and code"
