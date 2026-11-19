@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080a16">
+  <meta name="description" content="ckyx — Developer / Programmer">
+  <title>ckyx · Developer</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg:#080a16; --text:#f4f6ff; --muted:#a4abc5;
+      --cyan:#62e8ff; --violet:#a58bff; --pink:#ff83c8;
+      --line:rgba(255,255,255,.13);
+    }
+    * { box-sizing:border-box; }
+    html,body { width:100%; min-height:100%; margin:0; }
+    body {
+      min-height:100svh; overflow:hidden; color:var(--text);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+      background:
+        radial-gradient(ellipse at 14% 18%,rgba(111,80,255,.22),transparent 38%),
+        radial-gradient(ellipse at 85% 72%,rgba(0,205,230,.14),transparent 35%),
+        radial-gradient(ellipse at 52% 110%,rgba(255,91,177,.12),transparent 42%),
+        var(--bg);
+    }
+    body::before {
+      content:""; position:fixed; inset:0; pointer-events:none; opacity:.16;
+      background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+      background-size:44px 44px;
+      mask-image:radial-gradient(ellipse at center,#000 10%,transparent 85%);
+    }
+    .topbar {
+      position:absolute; z-index:2; top:0; left:0; width:100%;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:25px clamp(22px,5vw,72px);
+    }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:850; letter-spacing:.08em; }
+    .brand-icon {
+      width:34px; height:34px; display:grid; place-items:center; border-radius:11px;
+      color:#080a16; font-size:14px;
+      background:linear-gradient(135deg,var(--cyan),var(--violet) 60%,var(--pink));
+      box-shadow:0 0 25px #9b8aff55;
+    }
+    button {
+      border:1px solid var(--line); border-radius:11px; padding:9px 14px;
+      color:var(--text); background:#ffffff0a; font:600 13px inherit;
+      cursor:pointer; transition:.2s;
+    }
+    button:hover { border-color:#a58bff99; background:#a58bff18; }
+    main {
+      min-height:100svh; width:min(1080px,calc(100% - 40px)); margin:auto;
+      display:grid; grid-template-columns:1.1fr .9fr; align-items:center;
+      gap:clamp(25px,6vw,80px); padding:90px 0 70px;
+    }
+    .intro { position:relative; z-index:1; }
+    .status {
+      display:inline-flex; align-items:center; gap:9px; padding:7px 12px;
+      border:1px solid #78f0bd44; border-radius:30px;
+      color:#a6f5d3; background:#78f0bd0c; font-size:11px;
+      letter-spacing:.13em;
+    }
+    .dot { width:7px; height:7px; border-radius:50%; background:#78f0bd; box-shadow:0 0 12px #78f0bd; }
+    h1 { margin:24px 0 8px; font-size:clamp(64px,10vw,112px); line-height:.98; letter-spacing:-.075em; }
+    .gradient {
+      color:transparent; background:linear-gradient(100deg,var(--cyan),var(--violet) 53%,var(--pink));
+      background-clip:text; -webkit-background-clip:text;
+    }
+    .role { margin:20px 0 12px; color:#e5e8ff; font-size:clamp(17px,2.2vw,23px); font-weight:650; letter-spacing:.025em; }
+    .desc { max-width:510px; margin:0; color:var(--muted); font-size:15px; line-height:1.9; }
+    .skills { display:flex; flex-wrap:wrap; gap:9px; max-width:560px; margin-top:27px; }
+    .skill {
+      padding:7px 11px; border:1px solid #a58bff38; border-radius:9px;
+      background:#a58bff0d; color:#dcd5ff; font-size:12px;
+    }
+    .links { display:flex; flex-wrap:wrap; gap:12px; margin-top:31px; }
+    .link {
+      display:inline-flex; align-items:center; gap:9px; padding:11px 16px;
+      border:1px solid var(--line); border-radius:11px; background:#ffffff08;
+      color:var(--text); font-size:13px; font-weight:650; transition:.22s;
+    }
+    .link.primary {
+      color:#080a16; border:0;
+      background:linear-gradient(110deg,var(--cyan),#b6a0ff 65%,var(--pink));
+      box-shadow:0 9px 30px #8d80ff30;
+    }
+    .link:hover { transform:translateY(-3px); }
+    .visual { min-height:420px; display:grid; place-items:center; position:relative; }
+    .planet {
+      width:min(340px,35vw); aspect-ratio:1; border-radius:50%; position:relative;
+      background:radial-gradient(circle at 32% 25%,#e5fcff 0 1%,#80e8ff 5%,#8273ff 31%,#392b82 61%,#101326 74%);
+      box-shadow:inset -25px -28px 60px #03040c,inset 13px 12px 35px #ffffff3d,0 0 95px #8273ff66;
+      animation:float 7s ease-in-out infinite;
+    }
+    .planet::before,.planet::after {
+      content:""; position:absolute; inset:-23px; border:1px solid #a58bff77;
+      border-radius:50%; transform:rotate(-25deg) scaleY(.38);
+    }
+    .planet::after { inset:-48px; border-color:#62e8ff66; transform:rotate(38deg) scaleY(.29); }
+    .satellite {
+      position:absolute; top:16%; right:15%; width:13px; height:13px;
+      border-radius:50%; background:var(--pink); box-shadow:0 0 25px var(--pink);
+    }
+    .orbit-label {
+      position:absolute; right:0; bottom:28px; padding:13px 17px;
+      border:1px solid var(--line); border-radius:13px;
+      background:#101329d9; backdrop-filter:blur(14px);
+      color:#c9cbea; font:12px/1.8 ui-monospace,monospace;
+      transform:rotate(-5deg); box-shadow:0 18px 45px #0005;
+    }
+    .orbit-label b { color:var(--cyan); font-weight:500; }
+    footer {
+      position:absolute; bottom:18px; left:0; width:100%; text-align:center;
+      color:#737b9c; font-size:11px; letter-spacing:.04em;
+    }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-13px)} }
+    @media(max-width:720px) {
+      body { overflow:auto; }
+      .topbar { padding:18px 20px; }
+      main {
+        min-height:100svh; grid-template-columns:1fr; gap:0;
+        align-content:center; padding:90px 0 65px;
+      }
+      .intro { text-align:center; }
+      .status { margin:auto; }
+      h1 { font-size:clamp(60px,17vw,88px); margin-top:20px; }
+      .role { margin-top:15px; }
+      .desc { margin:auto; font-size:14px; }
+      .skills,.links { justify-content:center; }
+      .skills { gap:7px; margin-top:20px; }
+      .skill { padding:6px 9px; font-size:11px; }
+      .links { margin-top:23px; }
+      .visual { min-height:250px; margin-top:12px; }
+      .planet { width:min(210px,55vw); }
+      .orbit-label { right:2%; bottom:4px; }
+      footer { position:relative; bottom:auto; padding:0 0 14px; }
+    }
+    @media(max-height:680px) and (min-width:721px) {
+      main { padding-top:65px; padding-bottom:45px; }
+      .visual { min-height:330px; }
+      .planet { width:min(275px,30vw); }
+      h1 { font-size:clamp(58px,8vw,88px); }
+      .skills { margin-top:18px; }
+      .links { margin-top:20px; }
+    }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="ckyx home"><span class="brand-icon">&lt;/&gt;</span><span>CKYX<span class="gradient">.DEV</span></span></a>
+    <button id="language" type="button" aria-label="Switch language">EN</button>
+  </header>
+
+  <main>
+    <section class="intro" aria-label="Profile">
+      <div class="status"><span class="dot"></span><span data-i18n="status">OPEN TO NEW IDEAS</span></div>
+      <h1><span class="gradient">ckyx</span><span class="gradient">.</span></h1>
+      <div class="role" data-i18n="role">Developer&nbsp;·&nbsp;Programmer</div>
+      <p class="desc" data-i18n="description">热爱编程与技术探索，专注于用代码解决问题、构建可靠而优雅的软件。</p>
+
+      <div class="skills" aria-label="Technology stack">
+        <span class="skill">C / C++</span><span class="skill">CMake</span>
+        <span class="skill">Python</span><span class="skill">Linux</span>
+        <span class="skill">Qt</span><span class="skill">wxWidgets</span>
+        <span class="skill">MFC</span><span class="skill">Java</span>
+        <span class="skill">JavaScript</span><span class="skill">Vue</span>
+        <span class="skill">Node.js</span><span class="skill">Docker</span>
+        <span class="skill">MySQL</span><span class="skill">Git</span>
+      </div>
+
+      <div class="links">
+        <a class="link primary" href="https://github.com/ckyx" target="_blank" rel="noopener noreferrer">
+          <span>⌘</span><span data-i18n="github">访问 GitHub</span><span>↗</span>
+        </a>
+        <a class="link" href="mailto:kcjsdust@163.com"><span>✉</span><span data-i18n="email">发送邮件</span></a>
+      </div>
+    </section>
+
+    <div class="visual" aria-hidden="true">
+      <div class="planet"><span class="satellite"></span></div>
+      <div class="orbit-label"><b>const</b> developer = "ckyx";<br><b>while</b> (curious) {<br>&nbsp;&nbsp;keepBuilding();<br>}</div>
+    </div>
+  </main>
+
+  <footer>© <span id="year"></span> ckyx <span data-i18n="footer">· 用热爱与代码打造</span> <span class="gradient">♥</span></footer>
+
+  <script>
+    const copy = {
+      zh: {
+        title:"ckyx · Developer", toggle:"EN", status:"OPEN TO NEW IDEAS",
+        role:"开发者 · 程序员",
+        description:"热爱编程与技术探索，专注于用代码解决问题、构建可靠而优雅的软件。",
+        github:"访问 GitHub", email:"发送邮件", footer:"· 用热爱与代码打造"
+      },
+      en: {
+        title:"ckyx · Developer", toggle:"中文", status:"OPEN TO NEW IDEAS",
+        role:"Developer · Programmer",
+        description:"Passionate about programming and exploring technology. I build reliable, elegant software and solve real-world problems with code.",
+        github:"Visit GitHub", email:"Email me", footer:"· Built with passion and code"
+      }
+    };
+    let lang = "zh";
+    const button = document.getElementById("language");
+    function setLanguage(next) {
+      lang = next;
+      const text = copy[lang];
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      document.title = text.title;
+      button.textContent = text.toggle;
+      button.setAttribute("aria-label", lang === "zh" ? "Switch to English" : "切换为中文");
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.dataset.i18n;
+        el.textContent = text[key];
+      });
+    }
+    button.addEventListener("click", () => setLanguage(lang === "zh" ? "en" : "zh"));
+    document.getElementById("year").textContent = new Date().getFullYear();
+    setLanguage("zh");
+  </script>
+</body>
+</html>
